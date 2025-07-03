@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -142,7 +141,7 @@ const Index = () => {
   const getStatusIcon = (status: string) => {
     switch (status) {
       case 'signed':
-        return <FileCheck className="h-4 w-4" />;
+        return <FileCheck className="h-4 w-4 text-green-600" />;
       case 'sent':
         return <Send className="h-4 w-4" />;
       case 'excluded':
@@ -153,14 +152,14 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 p-6">
-      <div className="max-w-6xl mx-auto space-y-6">
+    <div className="min-h-screen bg-gray-50 p-4">
+      <div className="max-w-6xl mx-auto space-y-4">
         
         {/* Header */}
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-3xl font-bold text-gray-900">Fiscal Sync Guardian</h1>
-            <p className="text-gray-600 mt-1">POS Fiscalization Bridge</p>
+            <h1 className="text-2xl font-bold text-gray-900">Fiscal Sync Guardian</h1>
+            <p className="text-gray-600 text-sm">POS Fiscalization Bridge</p>
           </div>
           <div className="flex items-center space-x-2">
             <Button variant="outline" size="sm">
@@ -171,32 +170,32 @@ const Index = () => {
         </div>
 
         {/* Status Section */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
           <Card>
-            <CardHeader className="pb-3">
+            <CardHeader className="pb-2">
               <CardTitle className="text-sm font-medium flex items-center">
                 <Activity className="h-4 w-4 mr-2" />
                 Operating Mode
               </CardTitle>
             </CardHeader>
-            <CardContent>
+            <CardContent className="pb-3">
               <div className="flex items-center space-x-2">
                 <div className={`w-3 h-3 rounded-full ${getStatusColor(isOnline)}`}></div>
-                <span className="font-medium">{isOnline ? 'Online' : 'Offline'}</span>
+                <span className="font-medium text-sm">{isOnline ? 'Online' : 'Offline'}</span>
               </div>
             </CardContent>
           </Card>
 
           <Card>
-            <CardHeader className="pb-3">
+            <CardHeader className="pb-2">
               <CardTitle className="text-sm font-medium flex items-center">
                 <Clock className="h-4 w-4 mr-2" />
                 Fiscal Day
               </CardTitle>
             </CardHeader>
-            <CardContent>
+            <CardContent className="pb-3">
               <div className="flex items-center space-x-2">
-                <Badge variant={fiscalDayOpen ? "default" : "secondary"}>
+                <Badge variant={fiscalDayOpen ? "default" : "secondary"} className="text-xs">
                   {fiscalDayOpen ? 'Open' : 'Closed'}
                 </Badge>
               </div>
@@ -204,35 +203,34 @@ const Index = () => {
           </Card>
 
           <Card>
-            <CardHeader className="pb-3">
+            <CardHeader className="pb-2">
               <CardTitle className="text-sm font-medium flex items-center">
                 <FileText className="h-4 w-4 mr-2" />
                 File Watcher
               </CardTitle>
             </CardHeader>
-            <CardContent>
+            <CardContent className="pb-3">
               <div className="flex items-center space-x-2">
                 <div className={`w-3 h-3 rounded-full ${getStatusColor(watcherRunning)}`}></div>
-                <span className="font-medium">{watcherRunning ? 'Running' : 'Stopped'}</span>
+                <span className="font-medium text-sm">{watcherRunning ? 'Running' : 'Stopped'}</span>
               </div>
-              <p className="text-sm text-gray-600 mt-1">
-                Monitoring: C:\POS\Invoices\
-              </p>
             </CardContent>
           </Card>
         </div>
 
         {/* Operations Section */}
         <Card>
-          <CardHeader>
-            <CardTitle>Operations</CardTitle>
+          <CardHeader className="pb-2">
+            <CardTitle className="text-sm">Operations</CardTitle>
           </CardHeader>
-          <CardContent>
-            <div className="flex flex-wrap gap-3">
+          <CardContent className="pb-3">
+            <div className="flex flex-wrap gap-2">
               <Button 
                 onClick={handleOpenDay}
                 disabled={fiscalDayOpen}
                 variant={fiscalDayOpen ? "outline" : "default"}
+                size="sm"
+                className={!fiscalDayOpen ? "bg-green-600 hover:bg-green-700" : ""}
               >
                 Open Fiscal Day
               </Button>
@@ -241,15 +239,17 @@ const Index = () => {
                 onClick={handleCloseDay}
                 disabled={!fiscalDayOpen}
                 variant={!fiscalDayOpen ? "outline" : "destructive"}
+                size="sm"
               >
                 Close Fiscal Day
               </Button>
               
-              <Separator orientation="vertical" className="h-8" />
+              <Separator orientation="vertical" className="h-6" />
               
               <Button 
                 onClick={handleForceSync}
                 variant="outline"
+                size="sm"
               >
                 Force Sync
               </Button>
@@ -257,6 +257,7 @@ const Index = () => {
               <Button 
                 onClick={handleGetStatus}
                 variant="outline"
+                size="sm"
               >
                 Get Status
               </Button>
@@ -264,6 +265,7 @@ const Index = () => {
               <Button 
                 onClick={handleGetConfig}
                 variant="outline"
+                size="sm"
               >
                 Get Config
               </Button>
@@ -271,47 +273,47 @@ const Index = () => {
           </CardContent>
         </Card>
 
-        {/* Invoices Section */}
+        {/* Receipt Centre Section */}
         <Card>
-          <CardHeader>
-            <CardTitle>Invoice Management</CardTitle>
+          <CardHeader className="pb-2">
+            <CardTitle className="text-sm">Receipt Centre</CardTitle>
           </CardHeader>
-          <CardContent>
+          <CardContent className="pb-3">
             <Tabs defaultValue="signed" className="w-full">
-              <TabsList className="grid w-full grid-cols-3">
-                <TabsTrigger value="signed" className="flex items-center gap-2">
-                  <FileCheck className="h-4 w-4" />
+              <TabsList className="grid w-full grid-cols-3 h-8">
+                <TabsTrigger value="signed" className="flex items-center gap-1 text-xs">
+                  <FileCheck className="h-3 w-3" />
                   Signed ({getInvoicesByStatus('signed').length})
                 </TabsTrigger>
-                <TabsTrigger value="sent" className="flex items-center gap-2">
-                  <Send className="h-4 w-4" />
+                <TabsTrigger value="sent" className="flex items-center gap-1 text-xs">
+                  <Send className="h-3 w-3" />
                   Sent ({getInvoicesByStatus('sent').length})
                 </TabsTrigger>
-                <TabsTrigger value="excluded" className="flex items-center gap-2">
-                  <FileX className="h-4 w-4" />
+                <TabsTrigger value="excluded" className="flex items-center gap-1 text-xs">
+                  <FileX className="h-3 w-3" />
                   Excluded ({getInvoicesByStatus('excluded').length})
                 </TabsTrigger>
               </TabsList>
               
               {(['signed', 'sent', 'excluded'] as const).map((status) => (
-                <TabsContent key={status} value={status}>
+                <TabsContent key={status} value={status} className="mt-2">
                   <Table>
                     <TableHeader>
-                      <TableRow>
-                        <TableHead>Invoice #</TableHead>
-                        <TableHead>Date</TableHead>
-                        <TableHead>Amount</TableHead>
-                        <TableHead>Status</TableHead>
+                      <TableRow className="h-8">
+                        <TableHead className="text-xs">Invoice #</TableHead>
+                        <TableHead className="text-xs">Date</TableHead>
+                        <TableHead className="text-xs">Amount</TableHead>
+                        <TableHead className="text-xs">Status</TableHead>
                       </TableRow>
                     </TableHeader>
                     <TableBody>
                       {getInvoicesByStatus(status).map((invoice) => (
-                        <TableRow key={invoice.id}>
-                          <TableCell className="font-medium">{invoice.number}</TableCell>
-                          <TableCell>{invoice.date.toLocaleDateString()}</TableCell>
-                          <TableCell>${invoice.amount.toFixed(2)}</TableCell>
+                        <TableRow key={invoice.id} className="h-8">
+                          <TableCell className="font-medium text-xs">{invoice.number}</TableCell>
+                          <TableCell className="text-xs">{invoice.date.toLocaleDateString()}</TableCell>
+                          <TableCell className="text-xs">${invoice.amount.toFixed(2)}</TableCell>
                           <TableCell>
-                            <Badge variant={getStatusBadgeVariant(invoice.status)} className="flex items-center gap-1 w-fit">
+                            <Badge variant={getStatusBadgeVariant(invoice.status)} className="flex items-center gap-1 w-fit text-xs h-5">
                               {getStatusIcon(invoice.status)}
                               {invoice.status.charAt(0).toUpperCase() + invoice.status.slice(1)}
                             </Badge>
@@ -328,9 +330,9 @@ const Index = () => {
 
         {/* System Status Alert */}
         {!isOnline && (
-          <Alert>
+          <Alert className="py-2">
             <BellOff className="h-4 w-4" />
-            <AlertDescription>
+            <AlertDescription className="text-sm">
               System is running in offline mode. Invoices will be queued and sent when connection is restored.
             </AlertDescription>
           </Alert>
@@ -338,20 +340,20 @@ const Index = () => {
 
         {/* Activity Log Section */}
         <Card>
-          <CardHeader>
-            <CardTitle className="flex items-center">
+          <CardHeader className="pb-2">
+            <CardTitle className="flex items-center text-sm">
               <Activity className="h-4 w-4 mr-2" />
               Activity Log
             </CardTitle>
           </CardHeader>
-          <CardContent>
-            <div className="space-y-3 max-h-96 overflow-y-auto">
+          <CardContent className="pb-3">
+            <div className="space-y-2 max-h-80 overflow-y-auto">
               {logs.map((log) => (
-                <div key={log.id} className="flex items-start space-x-3 p-3 rounded-lg bg-gray-50">
+                <div key={log.id} className="flex items-start space-x-2 p-2 rounded-lg bg-gray-50">
                   {getLogIcon(log.type)}
                   <div className="flex-1 min-w-0">
-                    <p className="text-sm text-gray-900">{log.message}</p>
-                    <p className="text-xs text-gray-500 mt-1">
+                    <p className="text-xs text-gray-900">{log.message}</p>
+                    <p className="text-xs text-gray-500 mt-0.5">
                       {log.timestamp.toLocaleTimeString()}
                     </p>
                   </div>
