@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -10,7 +11,6 @@ import {
   Activity, 
   Clock, 
   FileText, 
-  Settings, 
   CheckCircle,
   XCircle,
   Info,
@@ -158,14 +158,18 @@ const Index = () => {
         {/* Header */}
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-2xl font-bold text-gray-900">Fiscal Sync Guardian</h1>
-            <p className="text-gray-600 text-sm">POS Fiscalization Bridge</p>
+            <div className="flex items-center space-x-3">
+              <div>
+                <h1 className="text-2xl font-bold text-gray-900">Fiscal Sync Guardian</h1>
+                <p className="text-gray-600 text-sm">POS Fiscalization Bridge</p>
+              </div>
+              <div className="text-xs text-gray-500">
+                Fiscal System Version 1.0.04
+              </div>
+            </div>
           </div>
-          <div className="flex items-center space-x-2">
-            <Button variant="outline" size="sm">
-              <Settings className="h-4 w-4 mr-2" />
-              Settings
-            </Button>
+          <div className="text-lg font-semibold text-gray-700">
+            Client Name
           </div>
         </div>
 
