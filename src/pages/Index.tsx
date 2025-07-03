@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -157,16 +156,8 @@ const Index = () => {
         
         {/* Header */}
         <div className="flex items-center justify-between">
-          <div>
-            <div className="flex items-center space-x-3">
-              <div>
-                <h1 className="text-2xl font-bold text-gray-900">Fiscal Sync Guardian</h1>
-                <p className="text-gray-600 text-sm">POS Fiscalization Bridge</p>
-              </div>
-              <div className="text-xs text-gray-500">
-                Fiscal System Version 1.0.04
-              </div>
-            </div>
+          <div className="text-lg font-semibold text-gray-700">
+            Fiscal System Version 1.0.0.4
           </div>
           <div className="text-lg font-semibold text-gray-700">
             Client Name
